@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:info_monde/data/local/database/db_service.dart';
-import 'package:info_monde/data/remote/api_service/api_service.dart';
+
+import 'package:country_info_app/data/local/db_service.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -14,7 +14,8 @@ void setupLocator() {
   locator.registerLazySingleton<APIService>(() => APIService());
 
   //region daos
-  locator.registerLazySingleton<CountryDAO>(() => CountryDAO(locator<DBService>()));
+  locator.registerLazySingleton<CountryDAO>(() =>
+      CountryDAO(locator<DBService>()));
   //endregion
 
   //region endpoints
