@@ -24,25 +24,4 @@ class DBService extends _$DBService {
 
   @override
   int get schemaVersion => 1;
-
-  Future<List<CountryEntityData>> getCountries() async {
-    return await select(countryEntity).get();
-  }
-
-  Future<CountryEntityData> getCountry(int id) async {
-    return await (select(countryEntity)..where((tbl) => tbl.id.equals(id)))
-        .getSingle();
-  }
-
-  Future<bool> updateCountry(CountryEntityCompanion country) async {
-    return await update(countryEntity).replace(country);
-  }
-
-  Future<int> insertCountry(CountryEntityCompanion country) async {
-    return await into(countryEntity).insert(country);
-  }
-
-  Future<int> deleteCountry(int id) async {
-    return await (delete(countryEntity)..where((tbl) => tbl.id.equals(id))).go();
-  }
 }
