@@ -17,7 +17,8 @@ class CountryDAO extends DatabaseAccessor<DBService> with _$CountryDAOMixin {
   }
 
   Future<CountryEntityData> getCountry(int id) async {
-    return await (select(countryEntity)..where((tbl) => tbl.id.equals(id))).getSingle();
+    return await (select(countryEntity)..where((tbl) => tbl.id.equals(id)))
+        .getSingle();
   }
 
   Future<bool> updateCountry(CountryEntityCompanion country) async {
@@ -29,6 +30,7 @@ class CountryDAO extends DatabaseAccessor<DBService> with _$CountryDAOMixin {
   }
 
   Future<int> deleteCountry(int id) async {
-    return await (delete(countryEntity)..where((tbl) => tbl.id.equals(id))).go();
+    return await (delete(countryEntity)..where((tbl) => tbl.id.equals(id)))
+        .go();
   }
 }
