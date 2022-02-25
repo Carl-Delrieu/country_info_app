@@ -7,190 +7,18 @@ part of 'db_service.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class CountryEntityData extends DataClass
-    implements Insertable<CountryEntityData> {
-  final int id;
-  final String name;
-  final String abbreviation;
-  final String capital;
-  final String currency;
-  final String phone;
-  final int population;
-  final String flag;
-  final String emblem;
-  final String orthographic;
-  CountryEntityData(
-      {required this.id,
-      required this.name,
-      required this.abbreviation,
-      required this.capital,
-      required this.currency,
-      required this.phone,
-      required this.population,
-      required this.flag,
-      required this.emblem,
-      required this.orthographic});
-  factory CountryEntityData.fromData(Map<String, dynamic> data,
-      {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return CountryEntityData(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      name: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
-      abbreviation: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}abbreviation'])!,
-      capital: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}capital'])!,
-      currency: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}currency'])!,
-      phone: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}phone'])!,
-      population: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}population'])!,
-      flag: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}flag'])!,
-      emblem: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}emblem'])!,
-      orthographic: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}orthographic'])!,
-    );
-  }
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['name'] = Variable<String>(name);
-    map['abbreviation'] = Variable<String>(abbreviation);
-    map['capital'] = Variable<String>(capital);
-    map['currency'] = Variable<String>(currency);
-    map['phone'] = Variable<String>(phone);
-    map['population'] = Variable<int>(population);
-    map['flag'] = Variable<String>(flag);
-    map['emblem'] = Variable<String>(emblem);
-    map['orthographic'] = Variable<String>(orthographic);
-    return map;
-  }
-
-  CountryEntityCompanion toCompanion(bool nullToAbsent) {
-    return CountryEntityCompanion(
-      id: Value(id),
-      name: Value(name),
-      abbreviation: Value(abbreviation),
-      capital: Value(capital),
-      currency: Value(currency),
-      phone: Value(phone),
-      population: Value(population),
-      flag: Value(flag),
-      emblem: Value(emblem),
-      orthographic: Value(orthographic),
-    );
-  }
-
-  factory CountryEntityData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CountryEntityData(
-      id: serializer.fromJson<int>(json['id']),
-      name: serializer.fromJson<String>(json['name']),
-      abbreviation: serializer.fromJson<String>(json['abbreviation']),
-      capital: serializer.fromJson<String>(json['capital']),
-      currency: serializer.fromJson<String>(json['currency']),
-      phone: serializer.fromJson<String>(json['phone']),
-      population: serializer.fromJson<int>(json['population']),
-      flag: serializer.fromJson<String>(json['flag']),
-      emblem: serializer.fromJson<String>(json['emblem']),
-      orthographic: serializer.fromJson<String>(json['orthographic']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'name': serializer.toJson<String>(name),
-      'abbreviation': serializer.toJson<String>(abbreviation),
-      'capital': serializer.toJson<String>(capital),
-      'currency': serializer.toJson<String>(currency),
-      'phone': serializer.toJson<String>(phone),
-      'population': serializer.toJson<int>(population),
-      'flag': serializer.toJson<String>(flag),
-      'emblem': serializer.toJson<String>(emblem),
-      'orthographic': serializer.toJson<String>(orthographic),
-    };
-  }
-
-  CountryEntityData copyWith(
-          {int? id,
-          String? name,
-          String? abbreviation,
-          String? capital,
-          String? currency,
-          String? phone,
-          int? population,
-          String? flag,
-          String? emblem,
-          String? orthographic}) =>
-      CountryEntityData(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        abbreviation: abbreviation ?? this.abbreviation,
-        capital: capital ?? this.capital,
-        currency: currency ?? this.currency,
-        phone: phone ?? this.phone,
-        population: population ?? this.population,
-        flag: flag ?? this.flag,
-        emblem: emblem ?? this.emblem,
-        orthographic: orthographic ?? this.orthographic,
-      );
-  @override
-  String toString() {
-    return (StringBuffer('CountryEntityData(')
-          ..write('id: $id, ')
-          ..write('name: $name, ')
-          ..write('abbreviation: $abbreviation, ')
-          ..write('capital: $capital, ')
-          ..write('currency: $currency, ')
-          ..write('phone: $phone, ')
-          ..write('population: $population, ')
-          ..write('flag: $flag, ')
-          ..write('emblem: $emblem, ')
-          ..write('orthographic: $orthographic')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(id, name, abbreviation, capital, currency,
-      phone, population, flag, emblem, orthographic);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is CountryEntityData &&
-          other.id == this.id &&
-          other.name == this.name &&
-          other.abbreviation == this.abbreviation &&
-          other.capital == this.capital &&
-          other.currency == this.currency &&
-          other.phone == this.phone &&
-          other.population == this.population &&
-          other.flag == this.flag &&
-          other.emblem == this.emblem &&
-          other.orthographic == this.orthographic);
-}
-
-class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
+class CountriesEntityCompanion extends UpdateCompanion<CountryEntity> {
   final Value<int> id;
   final Value<String> name;
   final Value<String> abbreviation;
   final Value<String> capital;
   final Value<String> currency;
   final Value<String> phone;
-  final Value<int> population;
+  final Value<int?> population;
   final Value<String> flag;
   final Value<String> emblem;
   final Value<String> orthographic;
-  const CountryEntityCompanion({
+  const CountriesEntityCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.abbreviation = const Value.absent(),
@@ -202,14 +30,14 @@ class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
     this.emblem = const Value.absent(),
     this.orthographic = const Value.absent(),
   });
-  CountryEntityCompanion.insert({
+  CountriesEntityCompanion.insert({
     required int id,
     required String name,
     required String abbreviation,
     required String capital,
     required String currency,
     required String phone,
-    required int population,
+    this.population = const Value.absent(),
     required String flag,
     required String emblem,
     required String orthographic,
@@ -219,18 +47,17 @@ class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
         capital = Value(capital),
         currency = Value(currency),
         phone = Value(phone),
-        population = Value(population),
         flag = Value(flag),
         emblem = Value(emblem),
         orthographic = Value(orthographic);
-  static Insertable<CountryEntityData> custom({
+  static Insertable<CountryEntity> custom({
     Expression<int>? id,
     Expression<String>? name,
     Expression<String>? abbreviation,
     Expression<String>? capital,
     Expression<String>? currency,
     Expression<String>? phone,
-    Expression<int>? population,
+    Expression<int?>? population,
     Expression<String>? flag,
     Expression<String>? emblem,
     Expression<String>? orthographic,
@@ -249,18 +76,18 @@ class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
     });
   }
 
-  CountryEntityCompanion copyWith(
+  CountriesEntityCompanion copyWith(
       {Value<int>? id,
       Value<String>? name,
       Value<String>? abbreviation,
       Value<String>? capital,
       Value<String>? currency,
       Value<String>? phone,
-      Value<int>? population,
+      Value<int?>? population,
       Value<String>? flag,
       Value<String>? emblem,
       Value<String>? orthographic}) {
-    return CountryEntityCompanion(
+    return CountriesEntityCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       abbreviation: abbreviation ?? this.abbreviation,
@@ -296,7 +123,7 @@ class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
       map['phone'] = Variable<String>(phone.value);
     }
     if (population.present) {
-      map['population'] = Variable<int>(population.value);
+      map['population'] = Variable<int?>(population.value);
     }
     if (flag.present) {
       map['flag'] = Variable<String>(flag.value);
@@ -312,7 +139,7 @@ class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
 
   @override
   String toString() {
-    return (StringBuffer('CountryEntityCompanion(')
+    return (StringBuffer('CountriesEntityCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('abbreviation: $abbreviation, ')
@@ -328,12 +155,12 @@ class CountryEntityCompanion extends UpdateCompanion<CountryEntityData> {
   }
 }
 
-class $CountryEntityTable extends CountryEntity
-    with TableInfo<$CountryEntityTable, CountryEntityData> {
+class $CountriesEntityTable extends CountriesEntity
+    with TableInfo<$CountriesEntityTable, CountryEntity> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $CountryEntityTable(this.attachedDatabase, [this._alias]);
+  $CountriesEntityTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -368,8 +195,8 @@ class $CountryEntityTable extends CountryEntity
   final VerificationMeta _populationMeta = const VerificationMeta('population');
   @override
   late final GeneratedColumn<int?> population = GeneratedColumn<int?>(
-      'population', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+      'population', aliasedName, true,
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _flagMeta = const VerificationMeta('flag');
   @override
   late final GeneratedColumn<String?> flag = GeneratedColumn<String?>(
@@ -400,11 +227,11 @@ class $CountryEntityTable extends CountryEntity
         orthographic
       ];
   @override
-  String get aliasedName => _alias ?? 'country_entity';
+  String get aliasedName => _alias ?? 'countries_entity';
   @override
-  String get actualTableName => 'country_entity';
+  String get actualTableName => 'countries_entity';
   @override
-  VerificationContext validateIntegrity(Insertable<CountryEntityData> instance,
+  VerificationContext validateIntegrity(Insertable<CountryEntity> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -450,8 +277,6 @@ class $CountryEntityTable extends CountryEntity
           _populationMeta,
           population.isAcceptableOrUnknown(
               data['population']!, _populationMeta));
-    } else if (isInserting) {
-      context.missing(_populationMeta);
     }
     if (data.containsKey('flag')) {
       context.handle(
@@ -479,22 +304,44 @@ class $CountryEntityTable extends CountryEntity
   @override
   Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
   @override
-  CountryEntityData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return CountryEntityData.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  CountryEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CountryEntity(
+      id: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      name: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
+      abbreviation: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}abbreviation'])!,
+      capital: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}capital'])!,
+      currency: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}currency'])!,
+      phone: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}phone'])!,
+      population: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}population']),
+      flag: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}flag'])!,
+      emblem: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}emblem'])!,
+      orthographic: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}orthographic'])!,
+    );
   }
 
   @override
-  $CountryEntityTable createAlias(String alias) {
-    return $CountryEntityTable(attachedDatabase, alias);
+  $CountriesEntityTable createAlias(String alias) {
+    return $CountriesEntityTable(attachedDatabase, alias);
   }
 }
 
 abstract class _$DBService extends GeneratedDatabase {
   _$DBService(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
-  late final $CountryEntityTable countryEntity = $CountryEntityTable(this);
+  late final $CountriesEntityTable countriesEntity =
+      $CountriesEntityTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [countryEntity];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [countriesEntity];
 }

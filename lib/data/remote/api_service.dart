@@ -14,10 +14,11 @@ class APIService {
   static const String _baseUrl = APIStrings.authority;
 
   Future<String> get({
-    required String unencodedPath
+    required String endpoint,
+    required Map<String, dynamic> query,
   }) async {
     http.Response response = await _client
-        .get(Uri.https(_baseUrl, unencodedPath))
+        .get(Uri.https(_baseUrl, endpoint, query))
         .timeout(const Duration(seconds: _timeoutSeconds));
 
     if (response.statusCode == 200) {

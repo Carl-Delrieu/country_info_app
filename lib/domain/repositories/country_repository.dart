@@ -1,36 +1,50 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:country_info_app/data/local/dao/country_dao.dart';
+import 'package:country_info_app/data/local/db_service.dart';
 import 'package:country_info_app/data/remote/endpoints/country_endpoint.dart';
 import 'package:country_info_app/domain/models/country.dart';
+import 'package:country_info_app/domain/models/country_mapper.dart';
 import 'package:flutter/material.dart';
 
 class CountryRepository {
-  CountryDAO _dao;
-  CountryEndpoint _endpoint;
+  final CountryDAO _dao;
+  final CountryEndpoint _endpoint;
   late Connectivity _connectivity;
-  List<Country?> _countries;
+  Country? _country;
 
   CountryRepository(this._dao, this._endpoint) {
     _connectivity = Connectivity();
   }
 
-  Future<List<Country?>> getCountries() async {
-    ConnectivityResult connectivityResult = await _connectivity.checkConnectivity();
+  Future<Country?> getCountry({required int id}) async {
+    ConnectivityResult connectivityResult =
+        await _connectivity.checkConnectivity();
 
-    final isNotMemorized = _countries == null;
+    final isNotMemorized = _country == null;
     final hasNoNetwork = connectivityResult == ConnectionState.none;
 
     if (isNotMemorized) {
       if (hasNoNetwork) {
-        _countries = await _getCountriesFromDatabase();
+        _country = await _getCountryFromDatabase(id: id);
+      } else {
+        try {
+          final dto = await _endpoint.getCountry(id: id);
+          _country = CountryMapper.fromDTO(dto);
+          if (_country != null) {
+            _dao.insertCountry(CountryMapper.toEntity(_country!).toColumns(true)
+                as CountriesEntityCompanion);
+          }
+        } catch (e) {
+          _country = await _getCountryFromDatabase(id: id);
+        }
       }
     }
 
-    return Future<List<Country?>>.value(_countries);
+    return Future<Country?>.value(_country);
   }
 
-  Future<Country?> _getCountriesFromDatabase() async {
-    final countriesList = await _dao.getCountries();
-    if (countriesList != null)
+  Future<Country?> _getCountryFromDatabase({required int id}) async {
+    final countryEntity = await _dao.getCountry(id);
+    return CountryMapper.fromEntity(countryEntity);
   }
 }

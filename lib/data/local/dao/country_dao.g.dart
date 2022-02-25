@@ -7,5 +7,5 @@ part of 'country_dao.dart';
 // **************************************************************************
 
 mixin _$CountryDAOMixin on DatabaseAccessor<DBService> {
-  $CountryEntityTable get countryEntity => attachedDatabase.countryEntity;
+  $CountriesEntityTable get countriesEntity => attachedDatabase.countriesEntity;
 }

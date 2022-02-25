@@ -8,7 +8,7 @@ class Country {
   final String flag;
   final String emblem;
   final String orthographic;
-  final int? id;
+  final int id;
 
   Country(this.name, this.abbreviation, this.capital, this.currency, this.phone,
       this.population, this.flag, this.emblem, this.orthographic, this.id);

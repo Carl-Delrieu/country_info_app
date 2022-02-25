@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:country_info_app/data/remote/api_service.dart';
 import 'package:country_info_app/data/remote/api_strings.dart';
 import 'package:country_info_app/data/remote/models/country_dto.dart';
-import 'package:country_info_app/data/remote/api_service.dart';
 
 class CountryEndpoint {
   APIService _service;
@@ -14,11 +14,12 @@ class CountryEndpoint {
     return CountryEndpoint(APIService.defaultClient());
   }
 
-  Future<CountryDTO> getCountries() async {
+  Future<CountryDTO> getCountry({required int id}) async {
     try {
-      final json = await _service.get(unencodedPath: APIStrings.unencodedPath);
+      final json = await _service
+          .get(endpoint: APIStrings.unencodedPath, query: {"id": id});
       return CountryDTO.fromJson(jsonDecode(json));
-    } on HttpException catch(e) {
+    } on HttpException{
       rethrow;
     }
   }

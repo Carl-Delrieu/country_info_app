@@ -19,7 +19,7 @@ class CountryModel {
   final String flag;
   final String emblem;
   final String orthographic;
-  final int? id;
+  final int id;
 
   CountryModel(
       {required this.name,
