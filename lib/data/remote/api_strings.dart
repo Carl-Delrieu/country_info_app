@@ -1,4 +1,4 @@
 class APIStrings {
-  static const authority = 'api.sampleapis.com';
-  static const unencodedPath = 'countries/countries';
+  static const baseURL = 'api.sampleapis.com';
+  static const endpoint = 'countries/countries';
 }

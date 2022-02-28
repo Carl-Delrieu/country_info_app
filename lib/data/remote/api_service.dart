@@ -11,7 +11,7 @@ class APIService {
 
   factory APIService.defaultClient() => APIService(http.Client());
 
-  static const String _baseUrl = APIStrings.authority;
+  static const String _baseUrl = APIStrings.baseURL;
 
   Future<String> get({
     required String endpoint,
