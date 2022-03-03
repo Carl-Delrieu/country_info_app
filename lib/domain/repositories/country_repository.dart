@@ -21,7 +21,7 @@ class CountryRepository {
   }
 
   Future<List<Country>> getAllCountries() async {
-    List<Country> _countries = [];
+    List<Country>? _countries = [];
 
     ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
@@ -33,12 +33,12 @@ class CountryRepository {
     } else {
       try {
         final dtoList = await _endpoint.getCountries();
-        _countries = dtoList.map((e) => CountryMapper.fromDTO(e)).toList();
+        _countries = dtoList?.map((e) => CountryMapper.fromDTO(e)).toList();
       } catch (e) {
         _countries = await _getAllFromDatabase();
       }
     }
-    return _countries;
+    return _countries ?? [];
   }
 
   Future<List<Country>> getAllFavourites() async => _getAllFromDatabase();

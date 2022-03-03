@@ -16,7 +16,7 @@ class CountryDTO {
       required this.capital,
       required this.currency,
       required this.phone,
-      required this.population,
+      this.population,
       required this.flag,
       required this.emblem,
       required this.orthographic,
@@ -28,10 +28,10 @@ class CountryDTO {
       capital: json['capital'],
       currency: json['currency'],
       phone: json['phone'],
-      population: json['population'],
-      flag: json['flag'],
-      emblem: json['emblem'],
-      orthographic: json['orthographic'],
+      population: json.containsKey('population') ? json['population'] : null,
+      flag: json['media'].containsKey('flag') ? json['media']['flag'] : "",
+      emblem: json['media'].containsKey('emblem') ? json['media']['emblem'] : "",
+      orthographic: json['media'].containsKey('orthographic') ? json['media']['orthographic'] : "",
       id: json['id']);
 
   Map<String, dynamic> toJson() => {

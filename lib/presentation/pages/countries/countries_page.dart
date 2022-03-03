@@ -19,12 +19,12 @@ class CountriesPage extends StatelessWidget {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0),
+                    mainAxisSpacing: 10.0,
+                childAspectRatio: 45/60),
                 itemBuilder: (context, i) {
                   return InkWell(
-                      onTap: () =>
-                          NavigationUtil.navigateTo(
-                              context, CountryInfo(snapshot.data[i])),
+                      onTap: () => NavigationUtil.navigateTo(
+                          context, CountryInfo(snapshot.data[i])),
                       child: Card(
                         color: Colors.white60,
                         child: Column(
@@ -32,17 +32,20 @@ class CountriesPage extends StatelessWidget {
                             ClipRRect(
                                 borderRadius: const BorderRadius.vertical(
                                     top: Radius.circular(4.0)),
-                                child: (Uri.parse(snapshot.data[i].flag).isAbsolute)
+                                child: (Uri.parse(snapshot.data[i].flag)
+                                        .isAbsolute)
                                     ? Column(children: [
-                                  Image.network(
-                                      snapshot.data[i].media.flag.link
-                                          .toString()),
-                                  Text(snapshot.data[i].name)])
-
+                                        Image.network(snapshot.data[i].flag,
+                                            errorBuilder: (c, e, s) =>
+                                                const Icon(
+                                                    Icons.error_outline, size: 100.0)),
+                                        Text(snapshot.data[i].name)
+                                      ])
                                     : Column(children: [
-                                  const Icon(Icons.error_outline, size: 200.0),
-                                  Text(snapshot.data[i].name)])
-                            ),
+                                        const Icon(Icons.error_outline,
+                                            size: 100.0),
+                                        Text(snapshot.data[i].name)
+                                      ])),
                           ],
                         ),
                       ));

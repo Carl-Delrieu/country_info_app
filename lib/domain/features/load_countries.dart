@@ -8,7 +8,7 @@ class LoadCountriesUseCase {
 
   Future<List<Country>> execute() async {
     try {
-      return _repository.getAllCountries();
+      return await _repository.getAllCountries();
     } catch (e) {
       rethrow;
     }
