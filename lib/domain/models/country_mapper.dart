@@ -31,6 +31,22 @@ class CountryMapper {
         orthographic: country.orthographic);
   }
 
+  static List<Country>? fromEntityList(List<CountryEntity> entityList) {
+    List<Country>? countries;
+    for (var entity in entityList) {
+      countries?.add(fromEntity(entity));
+    }
+    return countries;
+  }
+
+  static List<CountryEntity>? toEntityList(List<Country> countryList) {
+    List<CountryEntity>? entityList;
+    for (var country in countryList) {
+      entityList?.add(toEntity(country));
+    }
+    return entityList;
+}
+
   static Country fromDTO(CountryDTO dto) {
     return Country(
         dto.countryModel.name,
@@ -58,5 +74,21 @@ class CountryMapper {
             emblem: country.emblem,
             orthographic: country.orthographic,
             id: country.id));
+  }
+
+  static List<Country>? fromDTOList(List<CountryDTO> dtoList) {
+    List<Country>? countries;
+    for (var dto in dtoList) {
+      countries?.add(fromDTO(dto));
+    }
+    return countries;
+  }
+
+  static List<CountryDTO>? toDTOList(List<Country> countriesList) {
+    List<CountryDTO>? dtoList;
+    for (var country in countriesList) {
+      dtoList?.add(toDTO(country));
+    }
+    return dtoList;
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:country_info_app/data/remote/api_strings.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class APIService {
@@ -15,10 +16,9 @@ class APIService {
 
   Future<String> get({
     required String endpoint,
-    required Map<String, dynamic> query,
   }) async {
     http.Response response = await _client
-        .get(Uri.https(_baseUrl, endpoint, query))
+        .get(Uri.https(_baseUrl, endpoint))
         .timeout(const Duration(seconds: _timeoutSeconds));
 
     if (response.statusCode == 200) {

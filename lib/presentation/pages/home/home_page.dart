@@ -15,6 +15,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return const Center(
+      child: Text('Hello'),
+    );
   }
 }

@@ -14,12 +14,25 @@ class CountryEndpoint {
     return CountryEndpoint(APIService.defaultClient());
   }
 
+  Future<List<CountryDTO>> getCountries() async {
+    try {
+      List<CountryDTO>? _countries;
+      final json = await _service.get(endpoint: APIStrings.endpoint);
+      for (var country in jsonDecode(json)) {
+        _countries?.add(CountryDTO.fromJson(country));
+      }
+      return Future<List<CountryDTO>>.value(_countries);
+    } on HttpException {
+      rethrow;
+    }
+  }
+
   Future<CountryDTO> getCountry({required int id}) async {
     try {
       final json = await _service
-          .get(endpoint: APIStrings.endpoint, query: {"id": id});
+          .get(endpoint: APIStrings.endpoint);
       return CountryDTO.fromJson(jsonDecode(json));
-    } on HttpException{
+    } on HttpException {
       rethrow;
     }
   }
