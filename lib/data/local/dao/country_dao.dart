@@ -4,33 +4,33 @@ import 'package:drift/drift.dart';
 
 part 'country_dao.g.dart';
 
-@DriftAccessor(tables: [CountriesEntity])
+@DriftAccessor(tables: [CountryTable])
 class CountryDAO extends DatabaseAccessor<DBService> with _$CountryDAOMixin {
   CountryDAO(DBService _database) : super(_database);
 
   Future<List<CountryEntity>> getCountries() async {
-    return await select(countriesEntity).get();
+    return await select(countryTable).get();
   }
 
   Stream<List<CountryEntity>> watchCountries() {
-    return select(countriesEntity).watch();
+    return select(countryTable).watch();
   }
 
   Future<CountryEntity> getCountry(int id) async {
-    return await (select(countriesEntity)..where((tbl) => tbl.id.equals(id)))
+    return await (select(countryTable)..where((tbl) => tbl.id.equals(id)))
         .getSingle();
   }
 
-  Future<bool> updateCountry(CountriesEntityCompanion country) async {
-    return await update(countriesEntity).replace(country);
+  Future<bool> updateCountry(Insertable<CountryEntity> country) async {
+    return await update(countryTable).replace(country);
   }
 
-  Future<int> insertCountry(CountriesEntityCompanion country) async {
-    return await into(countriesEntity).insert(country);
+  Future<int> insertCountry(Insertable<CountryEntity> country) async {
+    return await into(countryTable).insert(country);
   }
 
   Future<int> deleteCountry(int id) async {
-    return await (delete(countriesEntity)..where((tbl) => tbl.id.equals(id)))
+    return await (delete(countryTable)..where((tbl) => tbl.id.equals(id)))
         .go();
   }
 

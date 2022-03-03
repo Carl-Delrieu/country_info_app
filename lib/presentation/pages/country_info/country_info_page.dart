@@ -1,6 +1,5 @@
 
 import 'package:country_info_app/domain/models/country.dart';
-import 'package:country_info_app/presentation/pages/country_info/widgets/favourite_button.dart';
 import 'package:flutter/material.dart';
 
 class CountryInfo extends StatelessWidget {
@@ -27,7 +26,7 @@ class CountryInfo extends StatelessWidget {
               Text(country.capital)]),
             IconButton(icon: const Icon(Icons.star_border),
                 onPressed: () {
-                  FavouriteButton(country);
+                  //FavouriteButton(country);
                 })])
 
               : Row(children: [
@@ -37,7 +36,7 @@ class CountryInfo extends StatelessWidget {
               Text(country.capital)]),
             IconButton(icon: const Icon(Icons.star_border),
                 onPressed: () {
-                  FavouriteButton(country);
+                  //FavouriteButton(country);
                 })])
           )
         ]),

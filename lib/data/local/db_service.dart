@@ -18,7 +18,7 @@ LazyDatabase _openConnection() {
   });
 }
 
-@DriftDatabase(tables: [CountriesEntity])
+@DriftDatabase(tables: [CountryTable])
 class DBService extends _$DBService {
   DBService() : super(_openConnection());
 

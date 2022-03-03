@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:country_info_app/data/remote/api_strings.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class APIService {

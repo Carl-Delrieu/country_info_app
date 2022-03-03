@@ -26,14 +26,4 @@ class CountryEndpoint {
       rethrow;
     }
   }
-
-  Future<CountryDTO> getCountry({required int id}) async {
-    try {
-      final json = await _service
-          .get(endpoint: APIStrings.endpoint);
-      return CountryDTO.fromJson(jsonDecode(json));
-    } on HttpException {
-      rethrow;
-    }
-  }
 }

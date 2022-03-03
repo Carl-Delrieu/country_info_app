@@ -6,20 +6,12 @@ class LoadFavouritesUseCase {
 
   LoadFavouritesUseCase(this._repository);
 
-  Future<List<Country>> call() async {
-    List<Country>? countries;
+  Future<List<Country>> execute() async {
     try {
-      countries = await _repository.getAll();
-    } catch(e) {
+      return await _repository.getAllFavourites();
+    } catch (e) {
       rethrow;
     }
 
-    if (countries != null) {
-      return countries;
-    } else {
-      throw CountriesRetrievalException();
-    }
   }
 }
-
-class CountriesRetrievalException implements Exception {}

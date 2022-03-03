@@ -1,15 +1,4 @@
 class CountryDTO {
-  CountryModel countryModel;
-
-  CountryDTO({required this.countryModel});
-
-  factory CountryDTO.fromJson(Map<String, dynamic> json) =>
-      CountryDTO.fromJson(json["Country Model"]);
-
-  Map<String, dynamic> toJson() => {"Country Model": countryModel.toJson()};
-}
-
-class CountryModel {
   final String name;
   final String abbreviation;
   final String capital;
@@ -21,7 +10,7 @@ class CountryModel {
   final String orthographic;
   final int id;
 
-  CountryModel(
+  CountryDTO(
       {required this.name,
       required this.abbreviation,
       required this.capital,
@@ -33,7 +22,7 @@ class CountryModel {
       required this.orthographic,
       required this.id});
 
-  factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
+  factory CountryDTO.fromJson(Map<String, dynamic> json) => CountryDTO(
       name: json['name'],
       abbreviation: json['abbreviation'],
       capital: json['capital'],
