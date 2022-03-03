@@ -13,7 +13,6 @@ import 'data/remote/api_service.dart';
 GetIt locator = GetIt.instance;
 
 void setupLocator() {
-
   //region data layer
   //region database
   locator.registerLazySingleton<DBService>(() => DBService(),
@@ -43,14 +42,18 @@ void setupLocator() {
   locator.registerLazySingleton<CountryRepository>(() =>
       CountryRepository(locator<CountryDAO>(), locator<CountryEndpoint>()));
   //endregion
-  
+
   //region use cases
-  locator.registerFactory<AddFavouriteUseCase>(() => AddFavouriteUseCase(locator<CountryRepository>()));
-  locator.registerFactory<DeleteFavouriteUseCase>(() => DeleteFavouriteUseCase(locator<CountryRepository>()));
-  locator.registerFactory<LoadCountriesUseCase>(() => LoadCountriesUseCase(locator<CountryRepository>()));
-  locator.registerFactory<LoadFavouritesUseCase>(() => LoadFavouritesUseCase(locator<CountryRepository>()));
+  locator.registerFactory<AddFavouriteUseCase>(
+      () => AddFavouriteUseCase(locator<CountryRepository>()));
+  locator.registerFactory<DeleteFavouriteUseCase>(
+      () => DeleteFavouriteUseCase(locator<CountryRepository>()));
+  locator.registerFactory<LoadCountriesUseCase>(
+      () => LoadCountriesUseCase(locator<CountryRepository>()));
+  locator.registerFactory<LoadFavouritesUseCase>(
+      () => LoadFavouritesUseCase(locator<CountryRepository>()));
   //endregion
-  
+
   //endregion
 
   //region presentation layer

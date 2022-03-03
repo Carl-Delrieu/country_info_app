@@ -20,7 +20,7 @@ class CountriesPage extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
-                childAspectRatio: 45/60),
+                    childAspectRatio: 45 / 60),
                 itemBuilder: (context, i) {
                   return InkWell(
                       onTap: () => NavigationUtil.navigateTo(
@@ -37,8 +37,8 @@ class CountriesPage extends StatelessWidget {
                                     ? Column(children: [
                                         Image.network(snapshot.data[i].flag,
                                             errorBuilder: (c, e, s) =>
-                                                const Icon(
-                                                    Icons.error_outline, size: 100.0)),
+                                                const Icon(Icons.error_outline,
+                                                    size: 100.0)),
                                         Text(snapshot.data[i].name)
                                       ])
                                     : Column(children: [

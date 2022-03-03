@@ -30,8 +30,11 @@ class CountryDTO {
       phone: json['phone'],
       population: json.containsKey('population') ? json['population'] : null,
       flag: json['media'].containsKey('flag') ? json['media']['flag'] : "",
-      emblem: json['media'].containsKey('emblem') ? json['media']['emblem'] : "",
-      orthographic: json['media'].containsKey('orthographic') ? json['media']['orthographic'] : "",
+      emblem:
+          json['media'].containsKey('emblem') ? json['media']['emblem'] : "",
+      orthographic: json['media'].containsKey('orthographic')
+          ? json['media']['orthographic']
+          : "",
       id: json['id']);
 
   Map<String, dynamic> toJson() => {

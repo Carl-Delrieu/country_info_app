@@ -23,12 +23,10 @@ class HomePage extends StatelessWidget {
               ),
             ]),
           ),
-          body: const TabBarView(
-              children: [
-                CountriesPage(),
-                FavouritesPage(),
-              ]),
-        )
-    );
+          body: const TabBarView(children: [
+            CountriesPage(),
+            FavouritesPage(),
+          ]),
+        ));
   }
 }

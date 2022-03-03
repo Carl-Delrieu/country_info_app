@@ -12,6 +12,5 @@ class LoadFavouritesUseCase {
     } catch (e) {
       rethrow;
     }
-
   }
 }

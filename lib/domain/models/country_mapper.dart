@@ -47,15 +47,15 @@ class CountryMapper {
 
   static CountryDTO toDTO(Country country) {
     return CountryDTO(
-            name: country.name,
-            abbreviation: country.abbreviation,
-            capital: country.capital,
-            currency: country.currency,
-            phone: country.phone,
-            population: country.population,
-            flag: country.flag,
-            emblem: country.emblem,
-            orthographic: country.orthographic,
-            id: country.id);
+        name: country.name,
+        abbreviation: country.abbreviation,
+        capital: country.capital,
+        currency: country.currency,
+        phone: country.phone,
+        population: country.population,
+        flag: country.flag,
+        emblem: country.emblem,
+        orthographic: country.orthographic,
+        id: country.id);
   }
 }
