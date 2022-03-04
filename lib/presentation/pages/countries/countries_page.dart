@@ -24,7 +24,7 @@ class CountriesPage extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return InkWell(
                       onTap: () => NavigationUtil.navigateTo(
-                          context, CountryInfo(snapshot.data[i])),
+                          context, CountryInfoPage(snapshot.data[i])),
                       child: Card(
                         color: Colors.white60,
                         child: Column(

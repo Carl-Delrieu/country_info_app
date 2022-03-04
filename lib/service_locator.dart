@@ -5,6 +5,7 @@ import 'package:country_info_app/domain/features/delete_favourite.dart';
 import 'package:country_info_app/domain/features/load_countries.dart';
 import 'package:country_info_app/domain/features/load_favourites.dart';
 import 'package:country_info_app/domain/repositories/country_repository.dart';
+import 'package:country_info_app/presentation/pages/country_info/country_info_scoped_model.dart';
 import 'package:get_it/get_it.dart';
 
 import 'data/local/dao/country_dao.dart';
@@ -18,8 +19,8 @@ void setupLocator() {
   //region database
   locator.registerLazySingleton<DBService>(() => DBService(),
       dispose: (database) async {
-    await database.close();
-  });
+        await database.close();
+      });
   //endregion
 
   //region API
@@ -28,12 +29,12 @@ void setupLocator() {
 
   //region daos
   locator.registerLazySingleton<CountryDAO>(
-      () => CountryDAO(locator<DBService>()));
+          () => CountryDAO(locator<DBService>()));
   //endregion
 
   //region endpoints
   locator.registerLazySingleton<CountryEndpoint>(
-      () => CountryEndpoint(locator<APIService>()));
+          () => CountryEndpoint(locator<APIService>()));
   //endregion
 
   //endregion
@@ -47,20 +48,24 @@ void setupLocator() {
 
   //region use cases
   locator.registerFactory<AddFavouriteUseCase>(
-      () => AddFavouriteUseCase(locator<CountryRepository>()));
+          () => AddFavouriteUseCase(locator<CountryRepository>()));
   locator.registerFactory<DeleteFavouriteUseCase>(
-      () => DeleteFavouriteUseCase(locator<CountryRepository>()));
+          () => DeleteFavouriteUseCase(locator<CountryRepository>()));
   locator.registerFactory<LoadCountriesUseCase>(
-      () => LoadCountriesUseCase(locator<CountryRepository>()));
+          () => LoadCountriesUseCase(locator<CountryRepository>()));
   locator.registerFactory<LoadFavouritesUseCase>(
-      () => LoadFavouritesUseCase(locator<CountryRepository>()));
+          () => LoadFavouritesUseCase(locator<CountryRepository>()));
   //endregion
 
   //endregion
 
   //region presentation layer
 
-  // soon
+  //region scoped models
+  locator.registerLazySingleton<CountryInfoScopedModel>(
+          () => CountryInfoScopedModel(
+          locator<AddFavouriteUseCase>(), locator<DeleteFavouriteUseCase>()));
+  //endregion
 
   //endregion
 }
