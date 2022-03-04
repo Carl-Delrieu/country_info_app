@@ -1,5 +1,5 @@
 import 'package:country_info_app/domain/models/country.dart';
-import 'package:country_info_app/presentation/pages/country_info/widget/favourite_button.dart';
+import 'package:country_info_app/presentation/pages/country_info/widgets/favourite_button.dart';
 import 'package:flutter/material.dart';
 
 class CountryInfo extends StatelessWidget {
