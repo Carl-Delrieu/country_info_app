@@ -33,9 +33,11 @@ class _FavouriteButtonState extends State<FavouriteButton> {
         onPressed: (int i) {
           setState(() {
             _selections[i] = !_selections[i];
-            (_selections[i])
-                ? locator<AddFavouriteUseCase>().execute(country)
-                : locator<DeleteFavouriteUseCase>().execute(country.id);
+            if (_selections[i]) {
+              locator<AddFavouriteUseCase>().execute(country);
+            } else {
+              locator<DeleteFavouriteUseCase>().execute(country.id);
+            }
           });
         });
   }
