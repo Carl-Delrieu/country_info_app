@@ -14,6 +14,7 @@ GetIt locator = GetIt.instance;
 
 void setupLocator() {
   //region data layer
+
   //region database
   locator.registerLazySingleton<DBService>(() => DBService(),
       dispose: (database) async {
@@ -38,6 +39,7 @@ void setupLocator() {
   //endregion
 
   //region domain layer
+
   //region repository
   locator.registerLazySingleton<CountryRepository>(() =>
       CountryRepository(locator<CountryDAO>(), locator<CountryEndpoint>()));
@@ -57,6 +59,8 @@ void setupLocator() {
   //endregion
 
   //region presentation layer
+
   // soon
+
   //endregion
 }
