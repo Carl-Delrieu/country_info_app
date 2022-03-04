@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Info Monde'),
+            title: const Text('Country Info App'),
             bottom: const TabBar(tabs: [
               Tab(
                 icon: Icon(Icons.public),
