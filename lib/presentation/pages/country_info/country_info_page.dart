@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:country_info_app/domain/models/country.dart';
 import 'package:country_info_app/presentation/pages/base_page.dart';
 import 'package:country_info_app/presentation/pages/country_info/country_info_scoped_model.dart';
@@ -33,11 +34,17 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                 Expanded(
                     child: (Uri.parse(country.flag).isAbsolute)
                         ? Row(children: [
-                            Image.network(country.flag.toString(),
-                                width: 150.0),
+                            Image.network(country.flag,
+                                width: 150.0,
+                                errorBuilder: (c, e, s) => const Icon(
+                                    Icons.error_outline,
+                                    size: 95.0)),
                             const SizedBox(width: 10.0),
                             Column(children: [
-                              Text(country.name),
+                              SizedBox(
+                                  width: 110.0,
+                                  height: 40.0,
+                                  child: AutoSizeText(country.name)),
                               Text(country.capital)
                             ]),
                             const SizedBox(width: 10.0),
@@ -47,7 +54,10 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                             const Icon(Icons.error_outline, size: 95.0),
                             const SizedBox(width: 10.0),
                             Column(children: [
-                              Text(country.name),
+                              SizedBox(
+                                  width: 110.0,
+                                  height: 40.0,
+                                  child: AutoSizeText(country.name)),
                               Text(country.capital)
                             ]),
                             const SizedBox(width: 10.0),
