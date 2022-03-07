@@ -14,7 +14,8 @@ class CountryMapper {
         entity.flag,
         entity.emblem,
         entity.orthographic,
-        entity.id);
+        entity.id,
+        false);
   }
 
   static CountryEntity toEntity(Country country) {
@@ -42,7 +43,8 @@ class CountryMapper {
         dto.flag,
         dto.emblem,
         dto.orthographic,
-        dto.id);
+        dto.id,
+        false);
   }
 
   static CountryDTO toDTO(Country country) {

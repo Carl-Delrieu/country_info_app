@@ -24,6 +24,9 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
   _countryInfo(Country country) {
     return BasePage<CountryInfoScopedModel>(
       initialState: ViewState.ready,
+      onScopedModelReady: (s) {
+        s.country = country;
+      },
       builder: (context, child, scopedModel) => Scaffold(
         appBar: AppBar(title: const Text('Info')),
         body: Container(

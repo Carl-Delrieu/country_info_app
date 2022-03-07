@@ -12,26 +12,16 @@ class CountryInfoScopedModel extends BaseScopedModel {
   CountryInfoScopedModel(
       this._addFavouriteUseCase, this._deleteFavouriteUseCase);
 
-  Country _countryToAdd = Country("name", "abbreviation", "capital", "currency",
-      "phone", 0, "flag", "emblem", "orthographic", 0);
+  late Country country;
 
-  Country get countryToAdd => _countryToAdd;
-
-  int _countryToDelete = 0;
-
-  int get countryToDelete => _countryToDelete;
+  bool _isFavourite = false;
+  bool get isFavourite => _isFavourite;
 
   ViewError<ErrorType> _error = ViewError(ErrorType.none, '');
-
   ViewError<ErrorType> get error => _error;
 
-  _setCountryToAdd(Country country) {
-    _countryToAdd = country;
-    notifyListeners();
-  }
-
-  _setCountryToDelete(Country country) {
-    _countryToDelete = country.id;
+  _setIsFavourite(bool favourite) {
+    _isFavourite = favourite;
     notifyListeners();
   }
 
@@ -41,39 +31,20 @@ class CountryInfoScopedModel extends BaseScopedModel {
     notifyListeners();
   }
 
-  onAddToFavourite(Country? country) async {
-    if (country == null) {
-      _setErrorState(ErrorType.addingError, 'No country to add');
-    } else {
-      setState(ViewState.loading);
-      _setCountryToAdd(country);
-      try {
-        await _addFavouriteUseCase.execute(_countryToAdd);
-        setState(ViewState.ready);
-      } catch (e) {
-        _setErrorState(
-            ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}');
+  onFavouriteButtonClick() async {
+    setState(ViewState.loading);
+    try {
+      if (!isFavourite) {
+        _addFavouriteUseCase.execute(country);
+      } else {
+        _deleteFavouriteUseCase.execute(country.id);
       }
+      _setIsFavourite(!isFavourite);
+      setState(ViewState.ready);
+    } catch (e) {
+      _setErrorState(ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}');
     }
   }
-
-  onDeleteFromFavourite(Country? country) async {
-    if (country == null) {
-      _setErrorState(ErrorType.deletingError, 'No country to delete');
-    } else {
-      setState(ViewState.loading);
-      _setCountryToDelete(country);
-      try {
-        await _deleteFavouriteUseCase.execute(_countryToDelete);
-        setState(ViewState.ready);
-      } catch (e) {
-        _setErrorState(
-            ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}');
-      }
-    }
-  }
-
-  onRetry() {}
 }
 
 enum ErrorType { none, addingError, deletingError, unexpected }
