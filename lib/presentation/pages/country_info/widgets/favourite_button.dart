@@ -36,7 +36,7 @@ class _FavouriteButtonState extends State<FavouriteButton> {
             if (_selections[i]) {
               locator<AddFavouriteUseCase>().execute(country);
             } else {
-              locator<DeleteFavouriteUseCase>().execute(country.id);
+              locator<DeleteFavouriteUseCase>().execute(country);
             }
           });
         });
