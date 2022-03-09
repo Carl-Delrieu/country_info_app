@@ -53,12 +53,10 @@ class CountryRepository {
   Future<List<Country>> getAllFavourites() async => _getAllFromDatabase();
 
   Future<void> addCountry(Country country) async {
-    country.isFavourite = true;
     await _dao.insertCountry(CountryMapper.toEntity(country));
   }
 
   Future<void> deleteCountry(Country country) async {
-    country.isFavourite = false;
     await _dao.deleteCountry(country.id);
   }
 }
