@@ -14,7 +14,6 @@ class FavouriteButton extends StatefulWidget {
 }
 
 class _FavouriteButtonState extends State<FavouriteButton> {
-  final List<bool> _selections = List.generate(1, (_) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +21,7 @@ class _FavouriteButtonState extends State<FavouriteButton> {
   }
 
   _favouriteButton(Country country) {
+    final List<bool> _selections = List.generate(1, (_) => country.isFavourite);
     return ToggleButtons(
         children: const [Icon(Icons.star)],
         color: Colors.grey,
