@@ -37,7 +37,7 @@ class CountryInfoScopedModel extends BaseScopedModel {
       if (!isFavourite) {
         _addFavouriteUseCase.execute(country);
       } else {
-        _deleteFavouriteUseCase.execute(country.id);
+        _deleteFavouriteUseCase.execute(country);
       }
       _setIsFavourite(!isFavourite);
       setState(ViewState.ready);
