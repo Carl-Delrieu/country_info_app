@@ -14,14 +14,13 @@ class CountryInfoScopedModel extends BaseScopedModel {
 
   late Country country;
 
-  bool _isFavourite = false;
-  bool get isFavourite => _isFavourite;
+  late bool isFavourite;
 
   ViewError<ErrorType> _error = ViewError(ErrorType.none, '');
   ViewError<ErrorType> get error => _error;
 
   _setIsFavourite(bool favourite) {
-    _isFavourite = favourite;
+    isFavourite = favourite;
     notifyListeners();
   }
 

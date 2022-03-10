@@ -7,6 +7,9 @@ class CountryTable extends Table {
   @override
   String get tableName => 'favourite_countries';
 
+  @override
+  Set<Column> get primaryKey => {id};
+
   IntColumn get id => integer().named('id')();
 
   TextColumn get name => text().named('name')();

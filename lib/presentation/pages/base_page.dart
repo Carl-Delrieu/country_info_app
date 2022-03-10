@@ -11,7 +11,7 @@ class BasePage<T extends BaseScopedModel> extends StatefulWidget {
 
   const BasePage(
       {Key? key,
-      required ScopedModelDescendantBuilder builder,
+      required ScopedModelDescendantBuilder<T> builder,
       this.onScopedModelReady,
       ViewState? initialState})
       : _builder = builder,

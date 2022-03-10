@@ -6,9 +6,9 @@ class LoadFavouritesUseCase {
 
   LoadFavouritesUseCase(this._repository);
 
-  Future<List<Country>> execute() async {
+  Stream<List<Country>> execute() {
     try {
-      return await _repository.getAllFavourites();
+      return _repository.getAllFavourites();
     } catch (e) {
       rethrow;
     }

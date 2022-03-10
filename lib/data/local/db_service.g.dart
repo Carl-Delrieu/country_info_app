@@ -205,7 +205,7 @@ class CountryTableCompanion extends UpdateCompanion<CountryEntity> {
     this.orthographic = const Value.absent(),
   });
   CountryTableCompanion.insert({
-    required int id,
+    this.id = const Value.absent(),
     required String name,
     required String abbreviation,
     required String capital,
@@ -215,8 +215,7 @@ class CountryTableCompanion extends UpdateCompanion<CountryEntity> {
     required String flag,
     required String emblem,
     required String orthographic,
-  })  : id = Value(id),
-        name = Value(name),
+  })  : name = Value(name),
         abbreviation = Value(abbreviation),
         capital = Value(capital),
         currency = Value(currency),
@@ -339,7 +338,7 @@ class $CountryTableTable extends CountryTable
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
       'id', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String?> name = GeneratedColumn<String?>(
@@ -411,8 +410,6 @@ class $CountryTableTable extends CountryTable
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -476,7 +473,7 @@ class $CountryTableTable extends CountryTable
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
+  Set<GeneratedColumn> get $primaryKey => {id};
   @override
   CountryEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     return CountryEntity.fromData(data,

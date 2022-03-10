@@ -50,7 +50,9 @@ class CountryRepository {
     return _countries;
   }
 
-  Future<List<Country>> getAllFavourites() async => _getAllFromDatabase();
+  Stream<List<Country>> getAllFavourites() => _dao
+      .watchCountries()
+      .map((e) => e.map((entity) => CountryMapper.fromEntity(entity)).toList());
 
   Future<void> addCountry(Country country) async {
     await _dao.insertCountry(CountryMapper.toEntity(country));

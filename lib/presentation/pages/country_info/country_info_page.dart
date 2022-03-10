@@ -26,6 +26,7 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
       initialState: ViewState.ready,
       onScopedModelReady: (s) {
         s.country = country;
+        s.isFavourite = country.isFavourite;
       },
       builder: (context, child, scopedModel) => Scaffold(
         appBar: AppBar(title: const Text('Info')),
@@ -51,7 +52,7 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                               Text(country.capital)
                             ]),
                             const SizedBox(width: 10.0),
-                            FavouriteButton(country)
+                            FavouriteButton(country, scopedModel)
                           ])
                         : Row(children: [
                             const Icon(Icons.error_outline, size: 95.0),
@@ -64,7 +65,7 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                               Text(country.capital)
                             ]),
                             const SizedBox(width: 10.0),
-                            FavouriteButton(country)
+                            FavouriteButton(country, scopedModel)
                           ]))
               ]),
               const SizedBox(height: 50.0),

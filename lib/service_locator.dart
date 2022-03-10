@@ -17,7 +17,7 @@ void setupLocator() {
   //region data layer
 
   //region database
-  locator.registerLazySingleton<DBService>(() => DBService(),
+  locator.registerLazySingleton<DBService>(() => DBService.defaultInstance(),
       dispose: (database) async {
         await database.close();
       });
@@ -62,7 +62,7 @@ void setupLocator() {
   //region presentation layer
 
   //region scoped models
-  locator.registerLazySingleton<CountryInfoScopedModel>(
+  locator.registerFactory<CountryInfoScopedModel>(
           () => CountryInfoScopedModel(
           locator<AddFavouriteUseCase>(), locator<DeleteFavouriteUseCase>()));
   //endregion

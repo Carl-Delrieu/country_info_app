@@ -10,8 +10,8 @@ class FavouritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: locator<LoadFavouritesUseCase>().execute(),
+      body: StreamBuilder(
+        stream: locator<LoadFavouritesUseCase>().execute(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(
