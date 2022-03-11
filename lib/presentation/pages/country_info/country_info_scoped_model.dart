@@ -13,7 +13,6 @@ class CountryInfoScopedModel extends BaseScopedModel {
       this._addFavouriteUseCase, this._deleteFavouriteUseCase);
 
   late Country country;
-
   late bool isFavourite;
 
   ViewError<ErrorType> _error = ViewError(ErrorType.none, '');
@@ -41,9 +40,10 @@ class CountryInfoScopedModel extends BaseScopedModel {
       _setIsFavourite(!isFavourite);
       setState(ViewState.ready);
     } catch (e) {
-      _setErrorState(ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}');
+      _setErrorState(
+          ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}');
     }
   }
 }
 
-enum ErrorType { none, addingError, deletingError, unexpected }
+enum ErrorType { none, unexpected }

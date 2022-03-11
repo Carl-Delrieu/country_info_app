@@ -4,11 +4,26 @@ import 'package:country_info_app/presentation/utils/navigation_util.dart';
 import 'package:country_info_app/service_locator.dart';
 import 'package:flutter/material.dart';
 
-class CountriesPage extends StatelessWidget {
+class CountriesPage extends StatefulWidget {
   const CountriesPage({Key? key}) : super(key: key);
 
   @override
+  _CountriesPageState createState() => _CountriesPageState();
+}
+
+class _CountriesPageState extends State<CountriesPage>
+    with AutomaticKeepAliveClientMixin<CountriesPage> {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: FutureBuilder(
         future: locator<LoadCountriesUseCase>().execute(),

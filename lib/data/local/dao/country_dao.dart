@@ -26,7 +26,7 @@ class CountryDAO extends DatabaseAccessor<DBService> with _$CountryDAOMixin {
   }
 
   Future<int> insertCountry(Insertable<CountryEntity> country) async {
-    return await into(countryTable).insert(country, onConflict: DoUpdate((tbl) => country));
+    return await into(countryTable).insert(country, mode: InsertMode.replace);
   }
 
   Future<int> deleteCountry(int id) async {

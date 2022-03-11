@@ -50,15 +50,18 @@ class CountryRepository {
     return _countries;
   }
 
-  Stream<List<Country>> getAllFavourites() => _dao
-      .watchCountries()
-      .map((e) => e.map((entity) => CountryMapper.fromEntity(entity)).toList());
+  Stream<List<Country>> getAllFavourites() => _dao.watchCountries().map((e) => e
+      .map((entity) =>
+          CountryMapper.fromEntity(entity).copyWith(isFavourite: true))
+      .toList());
 
   Future<void> addCountry(Country country) async {
+    country.isFavourite = true;
     await _dao.insertCountry(CountryMapper.toEntity(country));
   }
 
   Future<void> deleteCountry(Country country) async {
+    country.isFavourite = false;
     await _dao.deleteCountry(country.id);
   }
 }
