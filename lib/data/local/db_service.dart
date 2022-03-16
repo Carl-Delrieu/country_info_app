@@ -25,6 +25,7 @@ class DBService extends _$DBService {
 
   factory DBService.defaultInstance()  {
     final database = DBService(_openConnection(DBStrings.dbName));
+    // ignore: deprecated_member_use
     final driftInspector = DriftInspectorBuilder()
       ..bundleId = 'com.example.country_info_app'
       ..icon = 'flutter'
