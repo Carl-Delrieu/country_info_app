@@ -4,6 +4,7 @@ import 'package:country_info_app/presentation/pages/country_info/country_info_pa
 import 'package:country_info_app/presentation/pages/view_state.dart';
 import 'package:country_info_app/presentation/utils/navigation_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CountriesPage extends StatefulWidget {
   const CountriesPage({Key? key}) : super(key: key);
@@ -39,11 +40,11 @@ class _CountriesPageState extends State<CountriesPage>
                     if (scopedModel.state == ViewState.loading)
                       const Center(child: CircularProgressIndicator())
                     else if (scopedModel.state == ViewState.empty)
-                      const Center(
+                      Center(
                           child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                  "You don't have internet access or any favourite country !")))
+                                  AppLocalizations.of(context)!.noCountry)))
                     else if (scopedModel.state == ViewState.ready)
                       Expanded(
                           child: GridView.builder(
