@@ -28,7 +28,10 @@ class _CountriesPageState extends State<CountriesPage>
     return BasePage<CountriesScopedModel>(
         initialState: ViewState.loading,
         builder: (context, child, scopedModel) => Scaffold(
-                body: Container(
+            floatingActionButton: FloatingActionButton(
+                child: const Icon(Icons.refresh),
+                onPressed: () => scopedModel.onRetry()),
+            body: Container(
               padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

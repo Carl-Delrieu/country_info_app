@@ -8,14 +8,7 @@ class CountriesScopedModel extends BaseScopedModel {
   final LoadCountriesUseCase _loadCountriesUseCase;
 
   CountriesScopedModel(this._loadCountriesUseCase) {
-    setState(ViewState.loading);
-    _loadCountriesUseCase.execute().listen((updatedList) {
-      _setCountriesList(updatedList);
-      (countriesList.isEmpty)
-          ? setState(ViewState.empty)
-          : setState(ViewState.ready);
-    }).onError((e) => _setErrorState(
-        ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}'));
+    _loadCountries();
   }
 
   List<Country> _countriesList = [];
@@ -35,6 +28,21 @@ class CountriesScopedModel extends BaseScopedModel {
     _error = ViewError(errorType, message);
     setState(ViewState.error);
     notifyListeners();
+  }
+
+  onRetry() {
+    _loadCountries();
+  }
+
+  _loadCountries() {
+    setState(ViewState.loading);
+    _loadCountriesUseCase.execute().listen((updatedList) {
+      _setCountriesList(updatedList);
+      (countriesList.isEmpty)
+          ? setState(ViewState.empty)
+          : setState(ViewState.ready);
+    }).onError((e) => _setErrorState(
+        ErrorType.unexpected, 'Unexpected error: ${e.runtimeType}'));
   }
 }
 
