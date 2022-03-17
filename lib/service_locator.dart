@@ -5,6 +5,7 @@ import 'package:country_info_app/domain/features/delete_favourite.dart';
 import 'package:country_info_app/domain/features/load_countries.dart';
 import 'package:country_info_app/domain/features/load_favourites.dart';
 import 'package:country_info_app/domain/repositories/country_repository.dart';
+import 'package:country_info_app/presentation/pages/countries/countries_scoped_model.dart';
 import 'package:country_info_app/presentation/pages/country_info/country_info_scoped_model.dart';
 import 'package:country_info_app/presentation/pages/favourites/favourites_scoped_model.dart';
 import 'package:get_it/get_it.dart';
@@ -65,8 +66,10 @@ void setupLocator() {
   //region scoped models
   locator.registerFactory<CountryInfoScopedModel>(() => CountryInfoScopedModel(
       locator<AddFavouriteUseCase>(), locator<DeleteFavouriteUseCase>()));
-  /*locator.registerFactory<FavouritesScopedModel>(
-      () => FavouritesScopedModel(locator<LoadFavouritesUseCase>()));*/
+  locator.registerFactory<FavouritesScopedModel>(
+      () => FavouritesScopedModel(locator<LoadFavouritesUseCase>()));
+  locator.registerFactory<CountriesScopedModel>(
+      () => CountriesScopedModel(locator<LoadCountriesUseCase>()));
   //endregion
 
   //endregion

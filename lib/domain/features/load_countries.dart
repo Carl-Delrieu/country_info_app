@@ -6,9 +6,9 @@ class LoadCountriesUseCase {
 
   LoadCountriesUseCase(this._repository);
 
-  Future<List<Country>> execute() async {
+  Stream<List<Country>> execute() {
     try {
-      return await _repository.getAllCountries();
+      return _repository.getAllCountries();
     } catch (e) {
       rethrow;
     }
