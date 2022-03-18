@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-const lightPrimaryColor = Colors.blueAccent;
-const lightBackgroundColor = Colors.white;
-const lightAccentColor = Colors.blue;
-const lightIconsColor = Colors.white;
+const lightPrimaryColor = Color(0xFF448AFF);
+const lightBackgroundColor = Color(0xFFFFFFFF);
+const lightAccentColor = Color(0xFF2196F3);
+const lightIconsColor = Color(0xFFFFFFFF);
 
-
-const darkPrimaryColor = Colors.black26;
-const darkBackgroundColor = Colors.black12;
-const darkAccentColor = Colors.grey;
-const darkIconsColor = Colors.white;
+const darkPrimaryColor = Color(0xFF252525);
+const darkBackgroundColor = Color(0xFF2B2D2F);
+const darkAccentColor = Color(0xFF9E9E9E);
+const darkIconsColor = Color(0xFFFFFFFF);
