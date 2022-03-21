@@ -23,7 +23,11 @@ LazyDatabase _openConnection(String dbName) {
 class DBService extends _$DBService {
   DBService(QueryExecutor e) : super(e);
 
-  factory DBService.defaultInstance()  {
+  factory DBService.defaultInstance() => DBService(_openConnection(DBStrings.dbName));
+
+  factory DBService.test() => DBService(_openConnection(DBStrings.tDbName));
+
+  factory DBService.inspectorInstance()  {
     final database = DBService(_openConnection(DBStrings.dbName));
     // ignore: deprecated_member_use
     final driftInspector = DriftInspectorBuilder()
