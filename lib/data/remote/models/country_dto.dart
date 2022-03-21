@@ -49,4 +49,24 @@ class CountryDTO {
         "orthographic": orthographic,
         "id": id
       };
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CountryDTO &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          abbreviation == other.abbreviation &&
+          capital == other.capital &&
+          currency == other.currency &&
+          phone == other.phone &&
+          population == other.population &&
+          flag == other.flag &&
+          emblem == other.emblem &&
+          orthographic == other.orthographic &&
+          id == other.id);
+
+  @override
+  int get hashCode => Object.hash(id, name, abbreviation, capital, currency,
+  phone, population, flag, emblem, orthographic);
 }

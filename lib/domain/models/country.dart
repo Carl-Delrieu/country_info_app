@@ -11,7 +11,8 @@ class Country {
   final int id;
   bool isFavourite;
 
-  Country(this.name,
+  Country(
+      this.name,
       this.abbreviation,
       this.capital,
       this.currency,
@@ -23,17 +24,18 @@ class Country {
       this.id,
       this.isFavourite);
 
-  Country copyWith({String? name,
-    String? abbreviation,
-    String? capital,
-    String? currency,
-    String? phone,
-    int? population,
-    String? flag,
-    String? emblem,
-    String? orthographic,
-    int? id,
-    bool? isFavourite}) {
+  Country copyWith(
+      {String? name,
+      String? abbreviation,
+      String? capital,
+      String? currency,
+      String? phone,
+      int? population,
+      String? flag,
+      String? emblem,
+      String? orthographic,
+      int? id,
+      bool? isFavourite}) {
     return Country(
         name ?? this.name,
         abbreviation ?? this.abbreviation,
@@ -47,6 +49,27 @@ class Country {
         id ?? this.id,
         isFavourite ?? this.isFavourite);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Country &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          abbreviation == other.abbreviation &&
+          capital == other.capital &&
+          currency == other.currency &&
+          phone == other.phone &&
+          population == other.population &&
+          flag == other.flag &&
+          emblem == other.emblem &&
+          orthographic == other.orthographic &&
+          isFavourite == other.isFavourite);
+
+  @override
+  int get hashCode => Object.hash(id, name, abbreviation, capital, currency,
+      phone, population, flag, emblem, orthographic, isFavourite);
 
   @override
   String toString() {
