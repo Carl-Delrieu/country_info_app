@@ -19,7 +19,7 @@ void setupLocator() {
   //region data layer
 
   //region database
-  locator.registerLazySingleton<DBService>(() => DBService.defaultInstance(),
+  locator.registerLazySingleton<DBService>(() => DBService.inspectorInstance(),
       dispose: (database) async {
     await database.close();
   });
