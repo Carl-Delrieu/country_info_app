@@ -1,7 +1,7 @@
 import 'package:country_info_app/data/local/dao/country_dao.dart';
 import 'package:country_info_app/data/local/db_service.dart';
-import 'package:country_info_app/data/remote/api_service.dart';
 import 'package:country_info_app/data/remote/endpoints/country_endpoint.dart';
+import 'package:country_info_app/data/remote/endpoints/fake_api_service.dart';
 import 'package:country_info_app/domain/features/add_favourite.dart';
 import 'package:country_info_app/domain/features/delete_favourite.dart';
 import 'package:country_info_app/domain/features/load_countries.dart';
@@ -14,18 +14,24 @@ import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.instance;
 
-void setupLocator() {
+void setupTestLocator() {
   //region data layer
 
   //region database
-  locator.registerLazySingleton<DBService>(() => DBService.dev(),
+  locator.registerLazySingleton<DBService>(() => DBService.test(),
       dispose: (database) async {
+    await database.transaction(() async {
+      for (final table in database.allTables) {
+        await database.delete(table).go();
+      }
+    });
     await database.close();
   });
   //endregion
 
   //region API
-  locator.registerLazySingleton<APIService>(() => APIService.defaultClient());
+  locator.registerLazySingleton<FakeAPIService>(
+      () => FakeAPIService.getInstance());
   //endregion
 
   //region daos
@@ -35,7 +41,7 @@ void setupLocator() {
 
   //region endpoints
   locator.registerLazySingleton<CountryEndpoint>(
-      () => CountryEndpoint(locator<APIService>()));
+      () => CountryEndpoint(locator<FakeAPIService>()));
   //endregion
 
   //endregion
@@ -72,4 +78,8 @@ void setupLocator() {
   //endregion
 
   //endregion
+}
+
+void tearDownTestLocator() {
+  locator.reset();
 }

@@ -10,24 +10,13 @@ import 'package:path_provider/path_provider.dart';
 
 part 'db_service.g.dart';
 
-LazyDatabase _openConnection(String dbName) {
-  return LazyDatabase(() async {
-    final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(path.join(dbFolder.path, dbName));
-
-    return NativeDatabase(file);
-  });
-}
-
 @DriftDatabase(tables: [CountryTable])
 class DBService extends _$DBService {
   DBService(QueryExecutor e) : super(e);
 
   factory DBService.defaultInstance() => DBService(_openConnection(DBStrings.dbName));
 
-  factory DBService.test() => DBService(_openConnection(DBStrings.tDbName));
-
-  factory DBService.inspectorInstance()  {
+  factory DBService.dev()  {
     final database = DBService(_openConnection(DBStrings.dbName));
     // ignore: deprecated_member_use
     final driftInspector = DriftInspectorBuilder()
@@ -39,6 +28,25 @@ class DBService extends _$DBService {
     return database;
   }
 
+  factory DBService.test() => DBService(_openTestConnection());
+
   @override
   int get schemaVersion => 1;
+}
+
+LazyDatabase _openConnection(String dbName) {
+  return LazyDatabase(() async {
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(path.join(dbFolder.path, dbName));
+
+    return NativeDatabase(file, logStatements: true, setup: _setupDB);
+  });
+}
+
+LazyDatabase _openTestConnection() {
+  return LazyDatabase(() => NativeDatabase.memory(setup: _setupDB));
+}
+
+void _setupDB(database) {
+  database.execute('PRAGMA foreign_keys = ON');
 }
