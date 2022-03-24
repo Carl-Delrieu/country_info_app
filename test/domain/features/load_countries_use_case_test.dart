@@ -2,7 +2,7 @@ import 'package:country_info_app/domain/features/load_countries.dart';
 import 'package:country_info_app/domain/models/country.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_service_locator.dart';
+import '../../test_service_locator.dart';
 
 void main() {
   late LoadCountriesUseCase loadCountriesUseCase;
@@ -19,9 +19,6 @@ void main() {
       30094000,
       false);
 
-  List<Country> countries = [];
-  countries.add(country);
-
   setUp(() async {
     setupTestLocator();
     loadCountriesUseCase = locator<LoadCountriesUseCase>();
@@ -32,8 +29,8 @@ void main() {
   });
 
   test('Load countries from API', () async {
-    final streamedCountry = loadCountriesUseCase.execute();
-    expect(streamedCountry, isNotNull);
-    expectLater(streamedCountry, countries);
+    final stream = loadCountriesUseCase.execute();
+    final streamedCountry = await stream.first;
+    expect(streamedCountry.first, country);
   });
 }

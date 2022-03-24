@@ -1,14 +1,15 @@
+import 'package:country_info_app/domain/features/add_favourite.dart';
+import 'package:country_info_app/domain/features/delete_favourite.dart';
 import 'package:country_info_app/domain/features/load_favourites.dart';
 import 'package:country_info_app/domain/models/country.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_service_locator.dart';
+import '../../test_service_locator.dart';
 
 void main() {
   late LoadFavouritesUseCase loadFavouritesUseCase;
 
-  List<Country> countries = [];
-  countries.add(Country(
+  Country country = Country(
       "Test-Land",
       "TST",
       "Test-City",
@@ -19,19 +20,24 @@ void main() {
       "",
       "",
       30094000,
-      false));
+      false);
 
-  setUp(() async {
+  setUp(() {
     setupTestLocator();
     loadFavouritesUseCase = locator<LoadFavouritesUseCase>();
+
+    final addFavouriteUseCase = locator<AddFavouriteUseCase>();
+    addFavouriteUseCase.execute(country);
   });
 
   tearDown(() {
+    final deleteFavouriteUseCase = locator<DeleteFavouriteUseCase>();
+    deleteFavouriteUseCase.execute(country);
     tearDownTestLocator();
   });
 
   test('Load favourites from database', () async {
-    final streamedFavourite = loadFavouritesUseCase.execute();
-    expect(streamedFavourite, isNotNull);
+    final streamedFavourite = await loadFavouritesUseCase.execute().first;
+    expect(streamedFavourite.first, country);
   });
 }
