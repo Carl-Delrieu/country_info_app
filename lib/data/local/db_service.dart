@@ -40,7 +40,7 @@ LazyDatabase _openConnection(String dbName) {
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(path.join(dbFolder.path, dbName));
 
-    return NativeDatabase(file, logStatements: true, setup: _setupDB);
+    return NativeDatabase(file, logStatements: false, setup: _setupDB);
   });
 }
 
