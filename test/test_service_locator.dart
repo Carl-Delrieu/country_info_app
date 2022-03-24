@@ -7,10 +7,13 @@ import 'package:country_info_app/domain/features/delete_favourite.dart';
 import 'package:country_info_app/domain/features/load_countries.dart';
 import 'package:country_info_app/domain/features/load_favourites.dart';
 import 'package:country_info_app/domain/repositories/country_repository.dart';
+import 'package:country_info_app/domain/utils/connectivity_manager.dart';
 import 'package:country_info_app/presentation/pages/countries/countries_scoped_model.dart';
 import 'package:country_info_app/presentation/pages/country_info/country_info_scoped_model.dart';
 import 'package:country_info_app/presentation/pages/favourites/favourites_scoped_model.dart';
 import 'package:get_it/get_it.dart';
+
+import 'domain/utils/connectivity_manager_fake.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -48,9 +51,11 @@ void setupTestLocator() {
 
   //region domain layer
 
+  locator.registerLazySingleton<ConnectivityManager>(() => ConnectivityManagerFake());
+
   //region repository
   locator.registerLazySingleton<CountryRepository>(() =>
-      CountryRepository(locator<CountryDAO>(), locator<CountryEndpoint>()));
+      CountryRepository(locator<CountryDAO>(), locator<CountryEndpoint>(), locator<ConnectivityManager>()));
   //endregion
 
   //region use cases
