@@ -5,6 +5,7 @@ import 'package:country_info_app/presentation/pages/country_info/country_info_sc
 import 'package:country_info_app/presentation/pages/country_info/widgets/favourite_button.dart';
 import 'package:country_info_app/presentation/pages/view_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CountryInfoPage extends StatefulWidget {
   const CountryInfoPage(this.country, {Key? key}) : super(key: key);
@@ -73,10 +74,16 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                   alignment: Alignment.bottomLeft,
                   child: Column(
                     children: [
-                      Text('Abbreviation : ${country.abbreviation}'),
-                      Text('Currency : ${country.currency}'),
-                      Text('Phone indicator : ${country.phone}'),
-                      Text('Population : ${country.population}'),
+                      Text(AppLocalizations.of(context)!.abbreviation +
+                          country.abbreviation),
+                      Text(AppLocalizations.of(context)!.currency +
+                          country.currency),
+                      Text(AppLocalizations.of(context)!.callingCode +
+                          country.phone),
+                      (country.population != null)
+                          ? Text(AppLocalizations.of(context)!.population +
+                              '${country.population}')
+                          : Text(AppLocalizations.of(context)!.population + AppLocalizations.of(context)!.none)
                     ],
                   )),
             ],

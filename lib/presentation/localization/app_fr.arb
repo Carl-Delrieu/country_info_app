@@ -2,5 +2,10 @@
   "countries": "Pays",
   "favourites": "Favoris",
   "noCountry": "Vous n'avez ni connection internet ni pays favori !",
-  "noFavourite": "Vous n'avez pas de pays favori !"
+  "noFavourite": "Vous n'avez pas de pays favori !",
+  "abbreviation": "Abbreviation : ",
+  "currency": "Monnaie : ",
+  "callingCode": "Indicatif : +",
+  "population": "Population : ",
+  "none": "Inconnue"
 }
