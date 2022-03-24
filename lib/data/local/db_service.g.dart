@@ -489,6 +489,7 @@ class $CountryTableTable extends CountryTable
 abstract class _$DBService extends GeneratedDatabase {
   _$DBService(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $CountryTableTable countryTable = $CountryTableTable(this);
+  late final CountryDAO countryDAO = CountryDAO(this as DBService);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

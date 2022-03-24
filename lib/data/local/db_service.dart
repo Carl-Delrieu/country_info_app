@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:country_info_app/data/local/dao/country_dao.dart';
 import 'package:country_info_app/data/local/db_strings.dart';
 import 'package:country_info_app/data/local/models/country_entity.dart';
 import 'package:drift/drift.dart';
@@ -10,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 
 part 'db_service.g.dart';
 
-@DriftDatabase(tables: [CountryTable])
+@DriftDatabase(tables: [CountryTable], daos: [CountryDAO])
 class DBService extends _$DBService {
   DBService(QueryExecutor e) : super(e);
 
