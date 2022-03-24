@@ -1,34 +1,28 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:country_info_app/data/local/dao/country_dao.dart';
 import 'package:country_info_app/data/local/db_service.dart';
 import 'package:country_info_app/data/remote/endpoints/country_endpoint.dart';
 import 'package:country_info_app/data/remote/models/country_dto.dart';
 import 'package:country_info_app/domain/models/country.dart';
 import 'package:country_info_app/domain/models/country_mapper.dart';
-import 'package:flutter/material.dart';
+import 'package:country_info_app/domain/utils/connectivity_manager.dart';
 
 class CountryRepository {
   final CountryDAO _dao;
   final CountryEndpoint _endpoint;
-  late Connectivity _connectivity;
+  final ConnectivityManager _connectivityManager;
 
   List<Country> _countries = [];
 
-  CountryRepository(this._dao, this._endpoint) {
-    _connectivity = Connectivity();
-  }
+  CountryRepository(this._dao, this._endpoint, this._connectivityManager);
 
   Stream<List<Country>> getAllCountries() {
     return _getAllFromDatabase()
         .asyncMap((List<Country> favouriteCountries) async {
-      ConnectivityResult connectivityResult =
-          await _connectivity.checkConnectivity();
-
       final isNotMemoized = _countries.isEmpty;
-      final hasNoNetwork = connectivityResult == ConnectionState.none;
+      final hasNetwork = await _connectivityManager.checkConnectivity();
 
       if (isNotMemoized) {
-        if (hasNoNetwork) {
+        if (!hasNetwork) {
           return favouriteCountries;
         } else {
           try {
@@ -51,10 +45,10 @@ class CountryRepository {
   }
 
   List<Country> _combineFavListIntoApiList(
-      {required List<Country> favList, required List<Country> apiList}) =>
+          {required List<Country> favList, required List<Country> apiList}) =>
       apiList
           .map((country) => country.copyWith(
-          isFavourite: favList.any((fav) => fav.name == country.name)))
+              isFavourite: favList.any((fav) => fav.name == country.name)))
           .toList();
 
   Stream<List<Country>> getAllFavourites() => _getAllFromDatabase();
@@ -63,7 +57,7 @@ class CountryRepository {
     Stream<List<CountryEntity>> countries = _dao.watchCountries();
     return countries.map((streamedList) => streamedList
         .map((entity) =>
-        CountryMapper.fromEntity(entity).copyWith(isFavourite: true))
+            CountryMapper.fromEntity(entity).copyWith(isFavourite: true))
         .toList());
   }
 
