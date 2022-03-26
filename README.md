@@ -15,10 +15,10 @@ This project has been created to learn how to code an application in Flutter usi
 
 | Color            | Light Theme                                                      | Dark Theme                                                       |
 | ---------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Primary Color    | ![#448AFF](https://via.placeholder.com/10/448AFF?text=+) #448AFF | ![#252525](https://via.placeholder.com/10/252525?text=+) #252525 |
-| Background Color | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF | ![#2B2D2F](https://via.placeholder.com/10/2B2D2F?text=+) #2B2D2F |
-| Accent Color     | ![#2196F3](https://via.placeholder.com/10/2196F3?text=+) #2196F3 | ![#9E9E9E](https://via.placeholder.com/10/9E9E9E?text=+) #9E9E9E |
-| Icons Color      | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF |
+| Primary Color    | ![#448AFF](https://via.placeholder.com/25/448AFF?text=+) #448AFF | ![#252525](https://via.placeholder.com/25/252525?text=+) #252525 |
+| Background Color | ![#FFFFFF](https://via.placeholder.com/25/FFFFFF?text=+) #FFFFFF | ![#2B2D2F](https://via.placeholder.com/25/2B2D2F?text=+) #2B2D2F |
+| Accent Color     | ![#2196F3](https://via.placeholder.com/25/2196F3?text=+) #2196F3 | ![#9E9E9E](https://via.placeholder.com/25/9E9E9E?text=+) #9E9E9E |
+| Icons Color      | ![#FFFFFF](https://via.placeholder.com/25/FFFFFF?text=+) #FFFFFF | ![#FFFFFF](https://via.placeholder.com/25/FFFFFF?text=+) #FFFFFF |
 
 ## Download
 ```bash
