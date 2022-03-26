@@ -1,13 +1,13 @@
 # Country Info App
 
-This project has been created to learn how to code an application in Flutter using a clean achitecture
+This project has been created to learn how to code an application in Flutter using a clean architecture
 
 ## Author
 *Main contribution:* **[@Carl-Delrieu](https://www.github.com/Carl-Delrieu)**
 
 ## Features
 
-- Crossplatform (Android / IOS)
+- Cross-platform (Android / IOS)
 - English and french translation
 - Light/dark mode toggle
 
