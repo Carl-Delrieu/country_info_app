@@ -3,9 +3,9 @@
   "favourites": "Favourites",
   "noCountry": "You don't have internet access or any favourite country !",
   "noFavourite": "You don't have any favourite country !",
-  "abbreviation": "Abbreviation: ",
+  "abbreviation": "Country code: ",
   "currency": "Currency: ",
-  "callingCode": "Calling code: +",
+  "callingCode": "Calling code: ",
   "population": "Population: ",
   "none": "Unknown"
 }

@@ -44,13 +44,20 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                                 errorBuilder: (c, e, s) => const Icon(
                                     Icons.error_outline,
                                     size: 95.0)),
-                            const SizedBox(width: 10.0),
+                            const SizedBox(width: 20.0),
                             Column(children: [
+                              const SizedBox(height: 15.0),
                               SizedBox(
                                   width: 110.0,
-                                  height: 40.0,
-                                  child: AutoSizeText(country.name)),
-                              Text(country.capital)
+                                  height: 30.0,
+                                  child: AutoSizeText(country.name,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 40.0))),
+                              SizedBox(
+                                  width: 110.0,
+                                  height: 30.0,
+                                  child: AutoSizeText(country.capital))
                             ]),
                             const SizedBox(width: 10.0),
                             FavouriteButton(country, scopedModel)
@@ -61,29 +68,69 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
                             Column(children: [
                               SizedBox(
                                   width: 110.0,
-                                  height: 40.0,
-                                  child: AutoSizeText(country.name)),
-                              Text(country.capital)
+                                  height: 30.0,
+                                  child: AutoSizeText(country.name,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 40.0))),
+                              SizedBox(
+                                  width: 110.0,
+                                  height: 30.0,
+                                  child: AutoSizeText(country.capital))
                             ]),
                             const SizedBox(width: 10.0),
                             FavouriteButton(country, scopedModel)
                           ]))
               ]),
-              const SizedBox(height: 50.0),
+              const SizedBox(height: 25.0),
               Align(
                   alignment: Alignment.bottomLeft,
                   child: Column(
                     children: [
-                      Text(AppLocalizations.of(context)!.abbreviation +
-                          country.abbreviation),
-                      Text(AppLocalizations.of(context)!.currency +
-                          country.currency),
-                      Text(AppLocalizations.of(context)!.callingCode +
-                          country.phone),
+                      Container(color: Colors.grey, height: 1.0),
+                      const SizedBox(height: 20.0),
+                      Row(children: [
+                        const Icon(Icons.public, size: 30.0),
+                        const SizedBox(width: 40.0),
+                        Text(AppLocalizations.of(context)!.abbreviation +
+                            country.abbreviation)
+                      ]),
+                      const SizedBox(height: 20.0),
+                      Row(children: [
+                        const Icon(Icons.monetization_on, size: 30.0),
+                        const SizedBox(width: 40.0),
+                        Text(AppLocalizations.of(context)!.currency +
+                            country.currency)
+                      ]),
+                      const SizedBox(height: 20.0),
+                      (country.phone != "")
+                          ? Row(children: [
+                              const Icon(Icons.phone, size: 30.0),
+                              const SizedBox(width: 40.0),
+                              Text(AppLocalizations.of(context)!.callingCode +
+                                  "+" +
+                                  country.phone)
+                            ])
+                          : Row(children: [
+                              const Icon(Icons.phone, size: 30.0),
+                              const SizedBox(width: 40.0),
+                              Text(AppLocalizations.of(context)!.callingCode +
+                                  AppLocalizations.of(context)!.none)
+                            ]),
+                      const SizedBox(height: 20.0),
                       (country.population != null)
-                          ? Text(AppLocalizations.of(context)!.population +
-                              '${country.population}')
-                          : Text(AppLocalizations.of(context)!.population + AppLocalizations.of(context)!.none)
+                          ? Row(children: [
+                              const Icon(Icons.groups, size: 30.0),
+                              const SizedBox(width: 40.0),
+                              Text(AppLocalizations.of(context)!.population +
+                                  '${country.population}')
+                            ])
+                          : Row(children: [
+                              const Icon(Icons.groups, size: 30.0),
+                              const SizedBox(width: 40.0),
+                              Text(AppLocalizations.of(context)!.population +
+                                  AppLocalizations.of(context)!.none)
+                            ])
                     ],
                   )),
             ],
