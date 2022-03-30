@@ -23,13 +23,17 @@ class FavouritesPage extends StatelessWidget {
                     if (scopedModel.state == ViewState.loading)
                       const Center(child: CircularProgressIndicator())
                     else if (scopedModel.state == ViewState.empty)
-                       Center(
+                      Center(
                           child: Align(
                               alignment: Alignment.center,
-                              child: Text(AppLocalizations.of(context)!.noFavourite)))
+                              child: Text(
+                                  AppLocalizations.of(context)!.noFavourite)))
                     else if (scopedModel.state == ViewState.ready)
                       Expanded(
                           child: GridView.builder(
+                              physics: const ScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
                               itemCount: scopedModel.countriesList.length,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,43 +49,45 @@ class FavouritesPage extends StatelessWidget {
                                             scopedModel.countriesList[i])),
                                     child: Card(
                                       color: Colors.white60,
-                                      shape: RoundedRectangleBorder(
-                                          side: const BorderSide(color: Colors.amberAccent, width: 2.0),
-                                          borderRadius: BorderRadius.circular(4.0)),
-                                      child: Column(
-                                        children: <Widget>[
-                                          ClipRRect(
+                                      shape: (scopedModel
+                                              .countriesList[i].isFavourite)
+                                          ? RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                  color: Colors.amberAccent,
+                                                  width: 2.0),
                                               borderRadius:
-                                                  const BorderRadius.vertical(
+                                                  BorderRadius.circular(4.0))
+                                          : RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 2.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                              child: ClipRRect(
+                                                  borderRadius: const BorderRadius.vertical(
                                                       top:
                                                           Radius.circular(4.0)),
-                                              child: (Uri.parse(scopedModel
-                                                          .countriesList[i]
-                                                          .flag)
-                                                      .isAbsolute)
-                                                  ? Column(children: [
-                                                      Image.network(
-                                                          scopedModel
-                                                              .countriesList[i]
-                                                              .flag,
-                                                          errorBuilder: (c, e,
-                                                                  s) =>
-                                                              const Icon(
-                                                                  Icons
-                                                                      .error_outline,
-                                                                  size: 100.0)),
-                                                      Text(scopedModel
-                                                          .countriesList[i]
-                                                          .name)
-                                                    ])
-                                                  : Column(children: [
-                                                      const Icon(
+                                                  child: (Uri.parse(scopedModel.countriesList[i].flag)
+                                                          .isAbsolute)
+                                                      ? SizedBox(
+                                                          child: Image.network(scopedModel.countriesList[i].flag,
+                                                              errorBuilder: (c,
+                                                                      e, s) =>
+                                                                  const Icon(Icons.error_outline,
+                                                                      size:
+                                                                          100.0)))
+                                                      : const Icon(
                                                           Icons.error_outline,
-                                                          size: 100.0),
-                                                      Text(scopedModel
+                                                          size: 100.0))),
+                                          Expanded(
+                                              child: SizedBox(
+                                                  child: Center(
+                                                      child: Text(scopedModel
                                                           .countriesList[i]
-                                                          .name)
-                                                    ])),
+                                                          .name))))
                                         ],
                                       ),
                                     ));

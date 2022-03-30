@@ -81,39 +81,28 @@ class _CountriesPageState extends State<CountriesPage>
                                               borderRadius:
                                                   BorderRadius.circular(4.0)),
                                       child: Column(
-                                        children: <Widget>[
-                                          ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.vertical(
+                                        children: [
+                                          SizedBox(
+                                              child: ClipRRect(
+                                                  borderRadius: const BorderRadius.vertical(
                                                       top:
                                                           Radius.circular(4.0)),
-                                              child: (Uri.parse(scopedModel
-                                                          .countriesList[i]
-                                                          .flag)
-                                                      .isAbsolute)
-                                                  ? Column(children: [
-                                                      Image.network(
-                                                          scopedModel
-                                                              .countriesList[i]
-                                                              .flag,
-                                                          errorBuilder: (c, e,
-                                                                  s) =>
-                                                              const Icon(
-                                                                  Icons
-                                                                      .error_outline,
-                                                                  size: 100.0)),
-                                                      Text(scopedModel
-                                                          .countriesList[i]
-                                                          .name)
-                                                    ])
-                                                  : Column(children: [
-                                                      const Icon(
+                                                  child: (Uri.parse(scopedModel.countriesList[i].flag)
+                                                          .isAbsolute)
+                                                      ? SizedBox(
+                                                          child: Image.network(scopedModel.countriesList[i].flag,
+                                                              errorBuilder: (c,
+                                                                      e, s) =>
+                                                                  const Icon(Icons.error_outline,
+                                                                      size:
+                                                                          100.0)))
+                                                      : const Icon(
                                                           Icons.error_outline,
-                                                          size: 100.0),
-                                                      Text(scopedModel
-                                                          .countriesList[i]
-                                                          .name)
-                                                    ])),
+                                                          size: 100.0))),
+                                          Expanded(child: SizedBox(
+                                              child: Center(
+                                                  child: Text(scopedModel
+                                                      .countriesList[i].name))))
                                         ],
                                       ),
                                     ));
