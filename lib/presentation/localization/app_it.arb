@@ -1,0 +1,11 @@
+{
+  "countries": "Paesi",
+  "favourites": "Preferiti",
+  "noCountry": "Non hai accesso a Internet o nessun paese preferito!",
+  "noFavourite": "Non hai nessun paese preferito!",
+  "abbreviation": "Prefisso internazionale: ",
+  "currency": "Valuta: ",
+  "callingCode": "Codice telefonico: ",
+  "population": "Popolazione: ",
+  "none": "Informazioni sconosciute"
+}
