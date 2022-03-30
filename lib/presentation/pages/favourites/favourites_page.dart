@@ -44,7 +44,10 @@ class FavouritesPage extends StatelessWidget {
                                         CountryInfoPage(
                                             scopedModel.countriesList[i])),
                                     child: Card(
-                                      color: Colors.amberAccent,
+                                      color: Colors.white60,
+                                      shape: RoundedRectangleBorder(
+                                          side: const BorderSide(color: Colors.amberAccent, width: 2.0),
+                                          borderRadius: BorderRadius.circular(4.0)),
                                       child: Column(
                                         children: <Widget>[
                                           ClipRRect(
@@ -89,50 +92,3 @@ class FavouritesPage extends StatelessWidget {
             )));
   }
 }
-/*StreamBuilder(
-stream: locator<LoadFavouritesUseCase>().execute(),
-builder: (context, AsyncSnapshot snapshot) {
-if (snapshot.hasData) {
-return GridView.builder(
-itemCount: scopedModel.countriesList.length,
-gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-crossAxisCount: 2,
-crossAxisSpacing: 10.0,
-mainAxisSpacing: 10.0,
-childAspectRatio: 45 / 60),
-itemBuilder: (context, i) {
-return InkWell(
-onTap: () => NavigationUtil.navigateTo(
-context, CountryInfoPage(scopedModel.countriesList[i])),
-child: Card(
-color: Colors.white60,
-child: Column(
-children: <Widget>[
-ClipRRect(
-borderRadius: const BorderRadius.vertical(
-top: Radius.circular(4.0)),
-child: (Uri.parse(scopedModel.countriesList[i].flag)
-    .isAbsolute)
-? Column(children: [
-Image.network(scopedModel.countriesList[i].flag,
-errorBuilder: (c, e, s) =>
-const Icon(Icons.error_outline,
-size: 100.0)),
-Text(scopedModel.countriesList[i].name)
-])
-    : Column(children: [
-const Icon(Icons.error_outline,
-size: 100.0),
-Text(scopedModel.countriesList[i].name)
-])),
-],
-),
-));
-});
-} else {
-return const Center(
-child: CircularProgressIndicator(),
-);
-}
-},
-),*/

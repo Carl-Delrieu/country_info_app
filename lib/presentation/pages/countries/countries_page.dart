@@ -65,10 +65,21 @@ class _CountriesPageState extends State<CountriesPage>
                                         CountryInfoPage(
                                             scopedModel.countriesList[i])),
                                     child: Card(
-                                      color: (scopedModel
+                                      color: Colors.white60,
+                                      shape: (scopedModel
                                               .countriesList[i].isFavourite)
-                                          ? Colors.amberAccent
-                                          : Colors.white60,
+                                          ? RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                  color: Colors.amberAccent,
+                                                  width: 2.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0))
+                                          : RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 2.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
                                       child: Column(
                                         children: <Widget>[
                                           ClipRRect(
