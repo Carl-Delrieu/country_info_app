@@ -32,7 +32,7 @@ class _CountryInfoPageState extends State<CountryInfoPage> {
       builder: (context, child, scopedModel) => Scaffold(
         appBar: AppBar(title: const Text('Info')),
         body: Container(
-          padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+          padding: const EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 25.0),
           child: Column(
             children: [
               Row(children: [

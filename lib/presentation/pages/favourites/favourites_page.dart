@@ -15,7 +15,7 @@ class FavouritesPage extends StatelessWidget {
         initialState: ViewState.ready,
         builder: (context, child, scopedModel) => Scaffold(
                 body: Container(
-              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+              padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 0.0),
               child: Center(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

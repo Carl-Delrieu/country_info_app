@@ -33,7 +33,7 @@ class _CountriesPageState extends State<CountriesPage>
                 child: const Icon(Icons.refresh),
                 onPressed: () => scopedModel.onRetry()),
             body: Container(
-              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+              padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 0.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

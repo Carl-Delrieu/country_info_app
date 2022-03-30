@@ -21,7 +21,7 @@ class _FavouriteButtonState extends State<FavouriteButton> {
 
   _favouriteButton(Country country, CountryInfoScopedModel scopedModel) {
     return IconButton(
-      icon: const Icon(Icons.star),
+      icon: (scopedModel.isFavourite) ? const Icon(Icons.star) : const Icon(Icons.star_outline),
       color: (scopedModel.isFavourite) ? Colors.yellow : Colors.grey,
       onPressed: scopedModel.onFavouriteButtonClick,
     );
