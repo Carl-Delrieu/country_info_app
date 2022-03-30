@@ -87,7 +87,9 @@ class FavouritesPage extends StatelessWidget {
                                                   child: Center(
                                                       child: Text(scopedModel
                                                           .countriesList[i]
-                                                          .name))))
+                                                          .name, style: const TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 20.0)))))
                                         ],
                                       ),
                                     ));

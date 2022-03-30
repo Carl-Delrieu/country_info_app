@@ -99,10 +99,20 @@ class _CountriesPageState extends State<CountriesPage>
                                                       : const Icon(
                                                           Icons.error_outline,
                                                           size: 100.0))),
-                                          Expanded(child: SizedBox(
-                                              child: Center(
-                                                  child: Text(scopedModel
-                                                      .countriesList[i].name))))
+                                          Expanded(
+                                              child: SizedBox(
+                                                  child: Center(
+                                                      child: Text(
+                                                          scopedModel
+                                                              .countriesList[i]
+                                                              .name,
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      20.0)))))
                                         ],
                                       ),
                                     ));
