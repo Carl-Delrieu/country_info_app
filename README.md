@@ -8,7 +8,7 @@ This project has been created to learn how to code an application in Flutter usi
 ## Features
 
 - Cross-platform (Android / IOS)
-- English and french translation
+- English, french, german, italian, spanish and portuguese translation
 - Light/dark mode toggle
 
 ## Theme Color Reference
