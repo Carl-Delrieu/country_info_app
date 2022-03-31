@@ -2,8 +2,8 @@
 
 This project has been created to learn how to code an application in Flutter using a clean architecture
 
-## Author
-*Main contribution:* **[@Carl-Delrieu](https://www.github.com/Carl-Delrieu)**
+## Authors
+*Main contribution:* **[@Carl-Delrieu](https://www.github.com/Carl-Delrieu)**<br>
 *Tutor:* **[@emmanuel-pastor](https://github.com/emmanuel-pastor)**
 
 ## Features
