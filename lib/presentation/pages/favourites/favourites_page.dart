@@ -13,90 +13,116 @@ class FavouritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage<FavouritesScopedModel>(
         initialState: ViewState.ready,
-        builder: (context, child, scopedModel) => Scaffold(
+        builder: (context, child, scopedModel) =>
+            Scaffold(
                 body: Container(
-              padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 0.0),
-              child: Center(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                    if (scopedModel.state == ViewState.loading)
-                      const Center(child: CircularProgressIndicator())
-                    else if (scopedModel.state == ViewState.empty)
-                      Center(
-                          child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                  AppLocalizations.of(context)!.noFavourite)))
-                    else if (scopedModel.state == ViewState.ready)
-                      Expanded(
-                          child: GridView.builder(
-                              physics: const ScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: scopedModel.countriesList.length,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 10.0,
-                                      mainAxisSpacing: 10.0,
-                                      childAspectRatio: 45 / 60),
-                              itemBuilder: (context, i) {
-                                return InkWell(
-                                    onTap: () => NavigationUtil.navigateTo(
-                                        context,
-                                        CountryInfoPage(
-                                            scopedModel.countriesList[i])),
-                                    child: Card(
-                                      color: Colors.white60,
-                                      shape: (scopedModel
-                                              .countriesList[i].isFavourite)
-                                          ? RoundedRectangleBorder(
-                                              side: const BorderSide(
-                                                  color: Colors.amberAccent,
-                                                  width: 2.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0))
-                                          : RoundedRectangleBorder(
-                                              side: const BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 2.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0)),
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                              child: ClipRRect(
-                                                  borderRadius: const BorderRadius.vertical(
-                                                      top:
-                                                          Radius.circular(4.0)),
-                                                  child: (Uri.parse(scopedModel.countriesList[i].flag)
-                                                          .isAbsolute)
-                                                      ? SizedBox(
-                                                          child: Image.network(scopedModel.countriesList[i].flag,
-                                                              errorBuilder: (c,
-                                                                      e, s) =>
-                                                                  const Icon(Icons.error_outline,
-                                                                      size:
+                  padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 0.0),
+                  child: Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (scopedModel.state == ViewState.loading)
+                              const Center(child: CircularProgressIndicator())
+                            else
+                              if (scopedModel.state == ViewState.empty)
+                                Center(
+                                    child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .noFavourite)))
+                              else
+                                if (scopedModel.state == ViewState.ready)
+                                  Expanded(
+                                      child: GridView.builder(
+                                          physics: const ScrollPhysics(),
+                                          scrollDirection: Axis.vertical,
+                                          shrinkWrap: true,
+                                          itemCount: scopedModel.countriesList
+                                              .length,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 10.0,
+                                              mainAxisSpacing: 10.0,
+                                              childAspectRatio: 45 / 60),
+                                          itemBuilder: (context, i) {
+                                            return InkWell(
+                                                onTap: () =>
+                                                    NavigationUtil.navigateTo(
+                                                        context,
+                                                        CountryInfoPage(
+                                                            scopedModel
+                                                                .countriesList[i])),
+                                                child: Card(
+                                                  color: Colors.white60,
+                                                  shape: (scopedModel
+                                                      .countriesList[i]
+                                                      .isFavourite)
+                                                      ? RoundedRectangleBorder(
+                                                      side: const BorderSide(
+                                                          color: Colors
+                                                              .amberAccent,
+                                                          width: 2.0),
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0))
+                                                      : null,
+                                                  child: Column(
+                                                    children: [
+                                                      SizedBox(
+                                                          child: ClipRRect(
+                                                              borderRadius: const BorderRadius
+                                                                  .vertical(
+                                                                  top:
+                                                                  Radius
+                                                                      .circular(
+                                                                      4.0)),
+                                                              child: (Uri
+                                                                  .parse(
+                                                                  scopedModel
+                                                                      .countriesList[i]
+                                                                      .flag)
+                                                                  .isAbsolute)
+                                                                  ? SizedBox(
+                                                                  child: Image
+                                                                      .network(
+                                                                      scopedModel
+                                                                          .countriesList[i]
+                                                                          .flag,
+                                                                      errorBuilder: (
+                                                                          c,
+                                                                          e,
+                                                                          s) =>
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .error_outline,
+                                                                          size:
                                                                           100.0)))
-                                                      : const Icon(
-                                                          Icons.error_outline,
-                                                          size: 100.0))),
-                                          Expanded(
-                                              child: SizedBox(
-                                                  child: Center(
-                                                      child: Text(scopedModel
-                                                          .countriesList[i]
-                                                          .name, style: const TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 20.0)))))
-                                        ],
-                                      ),
-                                    ));
-                              }))
-                  ]
-                      //scopedModel.onFavouritesLoad()
+                                                                  : const Icon(
+                                                                  Icons
+                                                                      .error_outline,
+                                                                  size: 100.0))),
+                                                      Expanded(
+                                                          child: SizedBox(
+                                                              child: Center(
+                                                                  child: Text(
+                                                                      scopedModel
+                                                                          .countriesList[i]
+                                                                          .name,
+                                                                      textAlign: TextAlign
+                                                                          .center,
+                                                                      style: const TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          fontSize: 20.0)))))
+                                                    ],
+                                                  ),
+                                                ));
+                                          }))
+                          ]
+                        //scopedModel.onFavouritesLoad()
                       )),
-            )));
+                )));
   }
 }
