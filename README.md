@@ -4,6 +4,7 @@ This project has been created to learn how to code an application in Flutter usi
 
 ## Author
 *Main contribution:* **[@Carl-Delrieu](https://www.github.com/Carl-Delrieu)**
+*Tutor:* **[@emmanuel-pastor](https://github.com/emmanuel-pastor)**
 
 ## Features
 
